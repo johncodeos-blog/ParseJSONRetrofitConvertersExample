@@ -2,7 +2,7 @@ package com.example.parsejsonretrofitgsonexample.arrayJSON
 
 import com.google.gson.annotations.SerializedName
 
-// Uncomment the follow line if you're using the Kotlinx Serialization converter
+// Uncomment the following line if you're using the Kotlinx Serialization converter
 // @Serializable
 data class ArrayJSONModel(
 

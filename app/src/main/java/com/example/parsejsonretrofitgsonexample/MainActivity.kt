@@ -4,26 +4,32 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parsejsonretrofitgsonexample.arrayJSON.ArrayJSONActivity
+import com.example.parsejsonretrofitgsonexample.databinding.ActivityMainBinding
 import com.example.parsejsonretrofitgsonexample.nestedJSON.NestedJSONActivity
 import com.example.parsejsonretrofitgsonexample.simpleJSON.SimpleJSONActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        simple_json_button.setOnClickListener {
+
+        binding.simpleJsonButton.setOnClickListener {
             val intent = Intent(this@MainActivity, SimpleJSONActivity::class.java)
             this@MainActivity.startActivity(intent)
         }
 
-        array_json_button.setOnClickListener {
+        binding.arrayJsonButton.setOnClickListener {
             val intent = Intent(this@MainActivity, ArrayJSONActivity::class.java)
             this@MainActivity.startActivity(intent)
         }
 
-        nested_json_button.setOnClickListener {
+        binding.nestedJsonButton.setOnClickListener {
             val intent = Intent(this@MainActivity, NestedJSONActivity::class.java)
             this@MainActivity.startActivity(intent)
         }

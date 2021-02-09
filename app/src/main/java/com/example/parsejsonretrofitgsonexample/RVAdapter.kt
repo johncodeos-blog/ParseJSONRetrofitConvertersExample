@@ -4,22 +4,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.cell.view.*
+import com.example.parsejsonretrofitgsonexample.databinding.CellBinding
 
 class RVAdapter(private val cell: ArrayList<Cell>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    class CellViewHolder(var viewBinding: CellBinding) : RecyclerView.ViewHolder(viewBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val vh = LayoutInflater.from(parent.context).inflate(R.layout.cell, parent, false)
-        return ViewHolder(vh)
+        val binding = CellBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CellViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holder.itemView.employee_id_textview.text = cell[position].employeeId
-        holder.itemView.employee_name_textview.text = cell[position].employeeName
-        holder.itemView.employee_salary_textview.text = cell[position].employeeSalary
-        holder.itemView.employee_age_textview.text = cell[position].employeeAge
+        val itemViewHolder = holder as CellViewHolder
+        itemViewHolder.viewBinding.employeeIdTextview.text = cell[position].employeeId
+        itemViewHolder.viewBinding.employeeNameTextview.text = cell[position].employeeName
+        itemViewHolder.viewBinding.employeeSalaryTextview.text = cell[position].employeeSalary
+        itemViewHolder.viewBinding.employeeAgeTextview.text = cell[position].employeeAge
     }
 
     override fun getItemCount(): Int {

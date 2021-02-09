@@ -5,8 +5,8 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parsejsonretrofitgsonexample.APIService
 import com.example.parsejsonretrofitgsonexample.R
+import com.example.parsejsonretrofitgsonexample.databinding.ActivitySimpleJsonBinding
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_simple_json.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,15 +15,20 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class SimpleJSONActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySimpleJsonBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_simple_json)
+        binding = ActivitySimpleJsonBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         // Clean TextViews
-        json_results_textview.text = ""
-        employee_id_textview.text = ""
-        employee_name_textview.text = ""
-        employee_salary_textview.text = ""
-        employee_age_textview.text = ""
+        binding.jsonResultsTextview.text = ""
+        binding.employeeIdTextview.text = ""
+        binding.employeeNameTextview.text = ""
+        binding.employeeSalaryTextview.text = ""
+        binding.employeeAgeTextview.text = ""
 
         parseJSON()
     }
@@ -57,27 +62,27 @@ class SimpleJSONActivity : AppCompatActivity() {
                     val gson = GsonBuilder().setPrettyPrinting().create()
                     val prettyJson = gson.toJson(response.body())
                     Log.d("Pretty Printed JSON :", prettyJson)
-                    json_results_textview.text = prettyJson
+                    binding.jsonResultsTextview.text = prettyJson
 
                     // ID
                     val id = response.body()?.employeeId ?: "N/A"
                     Log.d("ID: ", id)
-                    employee_id_textview.text = id
+                    binding.employeeIdTextview.text = id
 
                     // Employee Name
                     val employeeName = response.body()?.employeeName ?: "N/A"
                     Log.d("Employee Name: ", employeeName)
-                    employee_name_textview.text = employeeName
+                    binding.employeeNameTextview.text = employeeName
 
                     // Employee Salary
                     val employeeSalary = response.body()?.employeeSalary ?: "N/A"
                     Log.d("Employee Salary: ", employeeSalary)
-                    employee_salary_textview.text = "$ $employeeSalary"
+                    binding.employeeSalaryTextview.text = "$ $employeeSalary"
 
                     // Employee Age
                     val employeeAge = response.body()?.employeeAge ?: "N/A"
                     Log.d("Employee Age: ", employeeAge)
-                    employee_age_textview.text = employeeAge
+                    binding.employeeAgeTextview.text = employeeAge
 
                 } else {
 

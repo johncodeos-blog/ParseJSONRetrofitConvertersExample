@@ -2,7 +2,7 @@ package com.example.parsejsonretrofitgsonexample.nestedJSON
 
 import com.google.gson.annotations.SerializedName
 
-// Uncomment the follow line if you're using the Kotlinx Serialization converter
+// Uncomment the following line if you're using the Kotlinx Serialization converter
 // @Serializable
 data class NestedJSONModel(
 
@@ -15,7 +15,7 @@ data class NestedJSONModel(
 
 )
 
-// Uncomment the follow line if you're using the Kotlinx Serialization converter
+// Uncomment the following line if you're using the Kotlinx Serialization converter
 // @Serializable
 data class Data(
 
@@ -26,7 +26,7 @@ data class Data(
 
 )
 
-// Uncomment the follow line if you're using the Kotlinx Serialization converter
+// Uncomment the following line if you're using the Kotlinx Serialization converter
 // @Serializable
 data class Employee(
 
@@ -38,7 +38,7 @@ data class Employee(
 
 )
 
-// Uncomment the follow line if you're using the Kotlinx Serialization converter
+// Uncomment the following line if you're using the Kotlinx Serialization converter
 // @Serializable
 data class Salary(
 

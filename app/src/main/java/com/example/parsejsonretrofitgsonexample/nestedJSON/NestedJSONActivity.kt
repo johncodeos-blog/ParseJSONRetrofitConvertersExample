@@ -11,9 +11,8 @@ import com.example.parsejsonretrofitgsonexample.APIService
 import com.example.parsejsonretrofitgsonexample.Cell
 import com.example.parsejsonretrofitgsonexample.R
 import com.example.parsejsonretrofitgsonexample.RVAdapter
+import com.example.parsejsonretrofitgsonexample.databinding.ActivityNestedJsonBinding
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_array_json.*
-import kotlinx.android.synthetic.main.activity_simple_json.json_results_textview
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,12 +25,15 @@ class NestedJSONActivity : AppCompatActivity() {
 
     var itemsArray: ArrayList<Cell> = ArrayList()
     lateinit var adapter: RVAdapter
+    private lateinit var binding: ActivityNestedJsonBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_nested_json)
+        binding = ActivityNestedJsonBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         // Clean TextViews
-        json_results_textview.text = ""
+        binding.jsonResultsTextview.text = ""
 
         setupRecyclerView()
         parseJSON()
@@ -39,13 +41,13 @@ class NestedJSONActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
-        json_results_recyclerview.layoutManager = layoutManager
-        json_results_recyclerview.setHasFixedSize(true)
+        binding.jsonResultsRecyclerview.layoutManager = layoutManager
+        binding.jsonResultsRecyclerview.setHasFixedSize(true)
         val dividerItemDecoration =
-            DividerItemDecoration(json_results_recyclerview.context, layoutManager.orientation)
+            DividerItemDecoration(binding.jsonResultsRecyclerview.context, layoutManager.orientation)
         ContextCompat.getDrawable(this, R.drawable.line_divider)
             ?.let { drawable -> dividerItemDecoration.setDrawable(drawable) }
-        json_results_recyclerview.addItemDecoration(dividerItemDecoration)
+        binding.jsonResultsRecyclerview.addItemDecoration(dividerItemDecoration)
     }
 
     @SuppressLint("LongLogTag")
@@ -78,7 +80,7 @@ class NestedJSONActivity : AppCompatActivity() {
                     val prettyJson = gson.toJson(response.body())
 
                     Log.d("Pretty Printed JSON :", prettyJson)
-                    json_results_textview.text = prettyJson
+                    binding.jsonResultsTextview.text = prettyJson
 
                     val items = response.body()?.data
                     if (items != null) {
@@ -117,7 +119,7 @@ class NestedJSONActivity : AppCompatActivity() {
                         }
                     }
 
-                    json_results_recyclerview.adapter = adapter
+                    binding.jsonResultsRecyclerview.adapter = adapter
 
                 } else {
 
