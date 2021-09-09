@@ -11,10 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".nestedJSON.NestedJSONActivity" />
-        <activity android:name=".arrayJSON.ArrayJSONActivity" />
-        <activity android:name=".simpleJSON.SimpleJSONActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".nestedJSON.NestedJSONActivity"
+            android:exported="true" />
+        <activity
+            android:name=".arrayJSON.ArrayJSONActivity"
+            android:exported="true" />
+        <activity
+            android:name=".simpleJSON.SimpleJSONActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
