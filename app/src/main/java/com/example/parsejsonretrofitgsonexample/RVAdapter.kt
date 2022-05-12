@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parsejsonretrofitgsonexample.databinding.CellBinding
 
-class RVAdapter(private val cell: ArrayList<Cell>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RVAdapter(private val cell: ArrayList<Cell>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class CellViewHolder(var viewBinding: CellBinding) : RecyclerView.ViewHolder(viewBinding.root)
 
